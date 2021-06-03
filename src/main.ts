@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from "../router/index";
-//整个应用支持路由。
-createApp(App).use(router).mount('#app')
+import store from "../store/index"
+createApp(App).use(router).use(store).mount('#app')

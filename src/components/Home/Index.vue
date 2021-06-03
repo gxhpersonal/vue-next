@@ -9,10 +9,18 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  setup () {
-    
-
-    return {}
+  props: {
+    title:String
+  },
+  setup (props) {
+    return {
+      mounted(){
+        
+      }
+    }
+  },
+  mounted(){
+    console.log(this.$store.state.count)
   }
 })
 </script>
