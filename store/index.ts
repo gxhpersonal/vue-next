@@ -12,7 +12,15 @@ const store = createStore({
   },
   mutations: {
     increment(state,data) {
-      state.count = data;
+      console.log(state,data)
+      state.count = data.amount;
+    }
+  },
+  actions:{
+    incrementAsync (store,data) {
+      setTimeout(() => {
+        store.commit('increment',data)
+      }, 2000);
     }
   }
 })

@@ -3,13 +3,16 @@
 		这是首页
 		<router-link class="btn" to="/detail">去详情页</router-link>
 		<div v-for="v in list" :key="v.id">{{v.name}}</div>
-    <button @click="add">点击+1</button>
+		<button @click="addByMapmutation({amount:1})">辅助函数点击+1</button>
+		<button @click="addByCommit">点击+1</button>
+		<button @click="minusByAction">点击-1</button>
+		<button @click="minusByMapaction({amount:4})">辅助函数点击-1</button>
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
+import { mapMutations, mapActions } from "vuex";
 export default defineComponent({
 	props: {
 		title: String,
@@ -29,11 +32,20 @@ export default defineComponent({
 		console.log(this.$store.state.list);
 		console.log(this.$store.getters.formateList);
 	},
-  methods:{
-    add(){
-      this.$store.commit("increment",100)
-    }
-  }
+	methods: {
+		addByCommit(){
+			this.$store.commit("increment",{amount:2})
+		},
+		...mapMutations({
+			addByMapmutation: "increment",
+		}),
+    minusByAction(){
+      this.$store.dispatch('incrementAsync',{amount:3})
+    },
+		...mapActions({
+			minusByMapaction: "incrementAsync",
+		}),
+	},
 });
 </script>
 
