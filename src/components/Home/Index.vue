@@ -7,12 +7,14 @@
 		<button @click="addByCommit">点击+1</button>
 		<button @click="minusByAction">点击-1</button>
 		<button @click="minusByMapaction({amount:4})">辅助函数点击-1</button>
+		<other></other>
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapMutations, mapActions } from "vuex";
+import other from "./other.vue";
 export default defineComponent({
 	props: {
 		title: String,
@@ -21,6 +23,9 @@ export default defineComponent({
 		return {
 			mounted() {},
 		};
+	},
+	components: {
+		other,
 	},
 	data() {
 		return {
@@ -33,15 +38,15 @@ export default defineComponent({
 		console.log(this.$store.getters.formateList);
 	},
 	methods: {
-		addByCommit(){
-			this.$store.commit("increment",{amount:2})
+		addByCommit() {
+			this.$store.commit("increment", { amount: 2 });
 		},
 		...mapMutations({
 			addByMapmutation: "increment",
 		}),
-    minusByAction(){
-      this.$store.dispatch('incrementAsync',{amount:3})
-    },
+		minusByAction() {
+			this.$store.dispatch("incrementAsync", { amount: 3 });
+		},
 		...mapActions({
 			minusByMapaction: "incrementAsync",
 		}),
