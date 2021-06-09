@@ -1,27 +1,33 @@
 import { createStore } from "vuex";
 
-const store = createStore({
-  state: {
+const moduleA = {
+  state: () => ({
     count: 0,
-    list: [{ id: 1, name: "nick", isShow: true }, { id: 2, name: "mack", isShow: false }]
-  },
+    list: [{ id: 1, name: "nick", age: "18", isShow: true }, { id: 2, name: "mack", age: "19", isShow: false }]
+  }),
   getters: {
-    formateList(state) {
-      return state.list.filter(v => v.isShow)
+    formatList(state:any) {
+      return state.list.filter((v: { isShow: any; }) => v.isShow)
     }
   },
   mutations: {
-    increment(state,data) {
-      console.log(state,data)
+    increment(state:any, data:any) {
+      console.log(state, data)
       state.count = data.amount;
     }
   },
-  actions:{
-    incrementAsync (store,data) {
+  actions: {
+    incrementAsync(store:any, data:any) {
       setTimeout(() => {
-        store.commit('increment',data)
+        store.commit('increment', data)
       }, 2000);
     }
+  }
+}
+
+const store = createStore({
+  modules: {
+    a: moduleA
   }
 })
 
