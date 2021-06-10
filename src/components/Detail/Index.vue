@@ -1,6 +1,8 @@
 <template>
   <div>
     这是详情页
+    <p>让我看看从状态管理中心获取到的数据</p>
+    <p>{{$store.state.a.count}}</p>
   </div>
 </template>
 
@@ -14,7 +16,7 @@ export default defineComponent({
     return {}
   },
   mounted() {
-		console.log(this.$store.state.count);
+		console.log(this.$store.state.a.count);
 	},
 })
 </script>
