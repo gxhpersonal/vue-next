@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 const Home = () => import("../src/components/Home/Index.vue");
+const Data = () => import("../src/components/Data/Index.vue");
 const Detail = () => import("../src/components/Detail/Index.vue");
 const notFound = () => import("../src/components/notFound.vue");
 const routes: Array<RouteRecordRaw> = [
@@ -10,6 +11,14 @@ const routes: Array<RouteRecordRaw> = [
       title: "首页"
     },
     component: Home
+  },
+  {
+    path: "/data",
+    name: "Data",
+    meta: {
+      title: "数据中心"
+    },
+    component: Data
   },
   {
     path: "/detail",

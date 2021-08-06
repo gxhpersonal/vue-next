@@ -2,12 +2,10 @@
   "name": "vue-next",
   "version": "0.0.0",
   "scripts": {
-    "dev": "node server",
+    "dev": "vite --mode dev",
     "test": "vite build --mode test",
     "build": "vite build --mode prod",
-    "serve": "vite preview",
-    "build:client": "vite build --outDir dist/client",
-    "build:server": "vite build --outDir dist/server --ssr src/entry-server.js "
+    "serve": "vite preview"
   },
   "dependencies": {
     "@vue/server-renderer": "^3.1.4",

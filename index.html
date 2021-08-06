@@ -1,38 +1,69 @@
 <!DOCTYPE html>
 <html lang="zh">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gxh</title>
-    <style>
-      body{
-        margin: 0;
-      }
-    </style>
-    <script>
-      //屏幕适应 
-      (function (win, doc) {
-        if (!win.addEventListener) return;
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gxh</title>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+  <script>
+    //屏幕适应 
+    (function (win, doc) {
+      if (!win.addEventListener) return;
+      var html = document.documentElement;
+      function setFont() {
         var html = document.documentElement;
-        function setFont() {
-          var html = document.documentElement;
-          var k = 750;
-          var clientW = html.clientWidth > 750 ? 750 : html.clientWidth;
-          html.style.fontSize = clientW / k * 100 + "px";
-        }
+        var k = 750;
+        var clientW = html.clientWidth > 750 ? 750 : html.clientWidth;
+        html.style.fontSize = clientW / k * 100 + "px";
+      }
+      setFont();
+      setTimeout(function () {
         setFont();
-        setTimeout(function () {
-          setFont();
-        }, 300);
-        doc.addEventListener('DOMContentLoaded', setFont, false);
-        win.addEventListener('resize', setFont, false);
-        win.addEventListener('load', setFont, false);
-      })(window, document);
-    </script>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+      }, 300);
+      doc.addEventListener('DOMContentLoaded', setFont, false);
+      win.addEventListener('resize', setFont, false);
+      win.addEventListener('load', setFont, false);
+    })(window, document);
+  </script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="/src/assets/three.js"></script>
+  
+  <script>
+    const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			const geometry = new THREE.BoxGeometry();
+			const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			const cube = new THREE.Mesh( geometry, material );
+			scene.add( cube );
+
+			camera.position.z = 5;
+
+			const animate = function () {
+				requestAnimationFrame( animate );
+
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+  </script>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
