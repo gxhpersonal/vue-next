@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   base:"/vue-next/",
   server: {
-    host: '192.168.9.136',
+    host: '192.168.7.62',
     port: 8082
   }
 })
